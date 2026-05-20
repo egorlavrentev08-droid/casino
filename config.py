@@ -1,4 +1,6 @@
 # config.py
+import os
+
 # ========== ТОКЕН БОТА ==========
 API_TOKEN = "8839921122:AAEz5S6wZpCGffxaduTyKtzuZlWVIO3avMs"
 
@@ -23,15 +25,15 @@ RECEIVE_FEE_MEDIUM = 0.20             # 20%
 RECEIVE_FEE_HIGH = 0.50               # 50%
 
 # ========== МАТОЖИДАНИЕ ИГР (RTP) ==========
-MINES_RTP = 1        # Мины — 88%
-ROULETTE_RTP = 1     # Рулетка — 90%
-JOKER_RTP = 1        # Джокер — 92%
+MINES_RTP = 0.88        # Мины — 88%
+ROULETTE_RTP = 0.90     # Рулетка — 90%
+JOKER_RTP = 0.92        # Джокер — 92%
 
 # ========== ЗОЛОТО ==========
 TOTAL_GOLD = 10000                  # Всего золота на сервере (граммов)
 GOLD_BASE_PRICE = 1000              # Цена 1 грамма при покупке с сервера (рублей)
-GOLD_SELL_FEE = 0.03                # Комиссия при продаже 7%
-GOLD_SELL_FEE_ANON = 0.7           # Комиссия при анонимной продаже 11%
+GOLD_SELL_FEE = 0.03                # Комиссия при продаже 3%
+GOLD_SELL_FEE_ANON = 0.07           # Комиссия при анонимной продаже 7%
 GOLD_LISTING_MULTIPLIER = 0.001     # 1 грамм = +0.1% к листингу
 
 # ========== СТАВКИ ==========
@@ -67,3 +69,16 @@ MINES_MULTIPLIERS = {
 # ========== ЦВЕТА ЧИСЕЛ ДЛЯ РУЛЕТКИ ==========
 RED_NUMBERS = {1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36}
 BLACK_NUMBERS = {2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35}
+
+# ========== БЭКАПЫ ==========
+BACKUP_DIR = '/app/shared/backups'   # Папка для хранения бэкапов
+BACKUP_RETENTION_DAYS = 3            # Хранить бэкапы 3 дня
+BACKUP_INTERVAL_MINUTES = 15         # Автобэкап каждые 15 минут
+
+# Создаём папку для бэкапов, если её нет
+if not os.path.exists(BACKUP_DIR):
+    os.makedirs(BACKUP_DIR, exist_ok=True)
+
+# ========== ЛОГИРОВАНИЕ ==========
+LOG_RETENTION_DAYS = 30              # Хранить логи 30 дней
+MAX_LOGS_PER_USER = 1000             # Максимум логов на пользователя
